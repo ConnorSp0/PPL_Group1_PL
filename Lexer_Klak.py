@@ -539,6 +539,20 @@ class Lexer:
                         else: return self.make_Identifier("sali")
                     else: return self.make_Identifier("sal")
                 else: return self.make_Identifier("sa")
+            elif self.current_char == 'u':
+                self.advance()
+                if self.current_char == 'b':
+                    self.advance()
+                    if self.current_char == 'o':
+                        self.advance()
+                        if self.current_char == 'k':
+                            self.advance()
+                            if self.current_char == None or self.current_char in " \t":
+                                return (["subok", 'RESERVED_WORD'])
+                            else: return self.make_Identifier("subok")
+                        else: return self.make_Identifier("subo")
+                    else: return self.make_Identifier("sub")
+                else: return self.make_Identifier("su")   
             elif self.current_char == 'i':
                 self.advance()
                 if self.current_char == 'm':
