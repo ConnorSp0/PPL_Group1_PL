@@ -555,6 +555,14 @@ class Lexer:
                             else: return self.make_Identifier("simul")
                         else: return self.make_Identifier("simu")
                     else: return self.make_Identifier("sim")
+                if self.current_char == 'r':
+                    self.advance()
+                    if self.current_char == 'a':
+                        self.advance()
+                        if self.current_char == None or self.current_char in " \t":
+                            return (["sira", 'RESERVED_WORD'])
+                        else: return self.make_Identifier("sira")
+                    else: return self.make_Identifier("sir")
                 else: return self.make_Identifier("si")
             else: return self.make_Identifier("s")
 
@@ -596,6 +604,50 @@ class Lexer:
                 else: return self.make_Identifier("ku")
             else: return self.make_Identifier("k")
 
+        elif self.current_char == 'b':
+            self.advance()
+            if self.current_char == 'u':
+                self.advance()
+                if self.current_char == 'l':
+                    self.advance()
+                    if self.current_char == None or self.current_char in " \t":
+                        return (["bul", 'RESERVED_WORD'])
+                    else: return self.make_Identifier("bul")
+                else: return self.make_Identifier("bu")
+            else: return self.make_Identifier("b")
+
+        elif self.current_char == 't':
+            self.advance()
+            if self.current_char == 'o':
+                self.advance()
+                if self.current_char == 't':
+                    self.advance()
+                    if self.current_char == 'o':
+                        self.advance()
+                        if self.current_char == 'o':
+                            if self.current_char == None or self.current_char in " \t":
+                                return (["totoo", 'RESERVED_WORD'])
+                            else: return self.make_Identifier("totoo")
+                        else: return self.make_Identifier("toto")
+                    else: return self.make_Identifier("tot")
+                else: return self.make_Identifier("to")
+            else: return self.make_Identifier("t")
+
+        elif self.current_char == 'm':
+            self.advance()
+            if self.current_char == 'a':
+                self.advance()
+                if self.current_char == 'l':
+                    self.advance()
+                    if self.current_char == 'i':
+                        self.advance()
+                        if self.current_char == None or self.current_char in " \t":
+                            return (["mali", 'RESERVED_WORD'])
+                        else: return self.make_Identifier("mali")
+                    else: return self.make_Identifier("mal")
+                else: return self.make_Identifier("ma")
+            else: return self.make_Identifier("m")
+
         elif self.current_char == 'w': 
             self.advance()
             if self.current_char == 'a': 
@@ -621,80 +673,6 @@ class Lexer:
                     else: return self.make_Identifier("wak")
                 else: return self.make_Identifier("wa")
             else: return self.make_Identifier("w")   
-
-        elif self.current_char == 'b':
-            self.advance()
-            if self.current_char == 'u':
-                self.advance()
-                if self.current_char == 'l':
-                    self.advance()
-                    if self.current_char == None or self.current_char in " \t":
-                        return (["bul", 'RESERVEDWORD'])
-                    else:
-                        return self.make_Identifier("bul")
-                else:
-                    return self.make_Identifier("bu")
-            else:
-                return self.make_Identifier("b")
-
-        elif self.current_char == 't':
-            self.advance()
-            if self.current_char == 'o':
-                self.advance()
-                if self.current_char == 't':
-                    self.advance()
-                    if self.current_char == 'o':
-                        self.advance()
-                        if self.current_char == 'o':
-                            if self.current_char == None or self.current_char in " \t":
-                                return (["totoo", 'RESERVEDWORD'])
-                            else:
-                                return self.make_Identifier("totoo")
-                        else:
-                            return self.make_Identifier("toto")
-                    else:
-                        return self.make_Identifier("tot")
-                else:
-                    return self.make_Identifier("to")
-            else:
-                return self.make_Identifier("t")
-
-        elif self.current_char == 'm':
-            self.advance()
-            if self.current_char == 'a':
-                self.advance()
-                if self.current_char == 'l':
-                    self.advance()
-                    if self.current_char == 'i':
-                        if self.current_char == None or self.current_char in " \t":
-                            return (["mali", 'RESERVEDWORD'])
-                        else:
-                            return self.make_Identifier("mali")
-                    else:
-                        return self.make_Identifier("mal")
-                else:
-                    return self.make_Identifier("ma")
-            else:
-                return self.make_Identifier("m")
-
-        elif self.current_char == 's':
-            self.advance()
-            if self.current_char == 'i':
-                self.advance()
-                if self.current_char == 'r':
-                    self.advance()
-                    if self.current_char == 'a':
-                        if self.current_char == None or self.current_char in " \t":
-                            return (["sira", 'RESERVEDWORD'])
-                        else:
-                            return self.make_Identifier("sira")
-                    else:
-                        return self.make_Identifier("sir")
-                else:
-                    return self.make_Identifier("si")
-            else:
-                return self.make_Identifier("s")
-
 
 def run(text, multiLine):         #Starts Program
     lexer = Lexer(text, multiLine)
