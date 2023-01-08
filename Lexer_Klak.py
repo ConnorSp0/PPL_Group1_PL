@@ -604,6 +604,20 @@ class Lexer:
                             else: return self.make_Identifier("karak")
                         else: return self.make_Identifier("kara")
                     else: return self.make_Identifier("kar")
+                elif self.current_char == 'b': 
+                    self.advance()
+                    if self.current_char == 't': 
+                        self.advance()
+                        if self.current_char == 'o': 
+                            self.advance()
+                            if self.current_char == 'l': 
+                                self.advance()
+                                if self.current_char == None or self.current_char in " \t":
+                                    return (["kabtol", 'KEYWORD'])
+                                else: return self.make_Identifier("kabtol")
+                            else: return self.make_Identifier("kabto")
+                        else: return self.make_Identifier("kabt")
+                    else: return self.make_Identifier("kab")   
                 else: return self.make_Identifier("ka")
             elif self.current_char == 'u': 
                 self.advance()
@@ -639,12 +653,27 @@ class Lexer:
                     if self.current_char == 'o':
                         self.advance()
                         if self.current_char == 'o':
+                            self.advance()
                             if self.current_char == None or self.current_char in " \t":
                                 return (["totoo", 'RESERVED_WORD'])
                             else: return self.make_Identifier("totoo")
                         else: return self.make_Identifier("toto")
                     else: return self.make_Identifier("tot")
                 else: return self.make_Identifier("to")
+            elif self.current_char == 'u': 
+                self.advance()
+                if self.current_char == 'l': 
+                    self.advance()
+                    if self.current_char == 'o': 
+                        self.advance()
+                        if self.current_char == 'y': 
+                            self.advance()
+                            if self.current_char == None or self.current_char in " \t":
+                                return (["tuloy", 'KEYWORD'])
+                            else: return self.make_Identifier("tuloy")
+                        else: return self.make_Identifier("tulo")
+                    else: return self.make_Identifier("tul")          
+                else: return self.make_Identifier("tu")
             else: return self.make_Identifier("t")
 
         elif self.current_char == 'm':
@@ -661,6 +690,33 @@ class Lexer:
                     else: return self.make_Identifier("mal")
                 else: return self.make_Identifier("ma")
             else: return self.make_Identifier("m")
+
+        elif self.current_char == 'p': 
+            self.advance()
+            if self.current_char == 'i': 
+                self.advance()
+                if self.current_char == 'n': 
+                    self.advance()
+                    if self.current_char == 'd': 
+                        self.advance()
+                        if self.current_char == 'u': 
+                            self.advance()
+                            if self.current_char == 't': 
+                                self.advance()
+                                if self.current_char == 'a': 
+                                    self.advance()
+                                    if self.current_char == 'n': 
+                                        self.advance()
+                                        if self.current_char == None or self.current_char in " \t":
+                                            return (["pindutan", 'KEYWORD'])
+                                        else: return self.make_Identifier("pindutan")
+                                    else: return self.make_Identifier("pinduta")
+                                else: return self.make_Identifier("pindut")
+                            else: return self.make_Identifier("pindu")
+                        else: return self.make_Identifier("pind")
+                    else: return self.make_Identifier("pin")          
+                else: return self.make_Identifier("pi")
+            else: return self.make_Identifier("p")
 
         elif self.current_char == 'w': 
             self.advance()
@@ -688,6 +744,8 @@ class Lexer:
                 else: return self.make_Identifier("wa")
             else: return self.make_Identifier("w")   
 
+        else: return self.make_Identifier(self.current_char)
+        
 def run(text, multiLine):         #Starts Program
     lexer = Lexer(text, multiLine)
     result = lexer.make_Tokens()
