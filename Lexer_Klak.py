@@ -372,9 +372,78 @@ class Lexer:
                 else: return self.make_Identifier("ku")
             else: return self.make_Identifier("k")
 
-
-
-
+        elif self.current_char == 'i': 
+            self.advance()
+            if self.current_char == 'l':
+                self.advance()
+                if self.current_char == 'i':
+                    self.advance()
+                    if self.current_char == 'm':
+                        self.advance()
+                        if self.current_char == 'b':
+                            self.advance()
+                            if self.current_char == 'a':
+                                self.advance()
+                                if self.current_char == 'g':
+                                    self.advance()
+                                    if self.current_char == None or self.current_char in " \t":
+                                        return (["ilimbag", 'KEYWORD'])
+                                    elif self.current_char == 's':
+                                        self.advance()
+                                        if self.current_char == None or self.current_char in " \t":
+                                            return (["ilimbags", 'KEYWORD'])
+                                        else: return self.make_Identifier("ilimbags")
+                                    else: return self.make_Identifier("ilimbag")
+                                else: return self.make_Identifier("ilimba")
+                            else: return self.make_Identifier("ilimb")
+                        else: return self.make_Identifier("ilim")    
+                    else: return self.make_Identifier("ili")
+                else: return self.make_Identifier("il")
+            else: return self.make_Identifier("i")
+        
+        elif self.current_char == 'l':
+            self.advance()
+            if self.current_char == 'a':
+                self.advance()
+                if self.current_char == 'g':
+                    self.advance()
+                    if self.current_char == 'y':
+                        self.advance()
+                        if self.current_char == 'a':
+                            self.advance()
+                            if self.current_char == 'n':
+                                self.advance()
+                                if self.current_char == None or self.current_char in " \t":
+                                    return (["lagyan", 'KEYWORD'])
+                                else: return self.make_Identifier("lagyan")
+                            else: return self.make_Identifier("lagya")
+                        else: return self.make_Identifier("lagy")
+                    else: return self.make_Identifier("lag")
+                else: return self.make_Identifier("la")
+            else: return self.make_Identifier("l")
+            
+        elif self.current_char == 'h':
+            self.advance()
+            if self.current_char == 'a':
+                self.advance()
+                if self.current_char == 'b':
+                    self.advance()
+                    if self.current_char == 'a':
+                        self.advance()
+                        if self.current_char == 'n':
+                            self.advance()
+                            if self.current_char == 'g':
+                                self.advance()
+                                if self.current_char == None or self.current_char in " \t":
+                                    return (["habang", 'KEYWORD'])
+                                else: return self.make_Identifier("habang")
+                            else: return self.make_Identifier("haban")
+                        else: return self.make_Identifier("haba")
+                    else: return self.make_Identifier("hab")
+                else: return self.make_Identifier("ha")
+            else: return self.make_Identifier("h")
+      
+    
 def run(text, multiLine):         #Starts Program
     lexer = Lexer(text, multiLine)
     result = lexer.make_Tokens()
