@@ -345,6 +345,39 @@ class Lexer:
                     return self.make_Identifier("hi")
             else:
                 return self.make_Identifier("h")
+        
+        elif self.current_char == 'e':
+            self.advance()
+            if self.current_char == 'd':
+                self.advance()
+                if self.current_char == 'i':
+                    self.advance()
+                    if self.current_char == None or self.current_char in " \t":
+                        return (["edi", 'KEYWORD'])
+                    elif self.current_char == 'k':
+                        self.advance()
+                        if self.current_char == 'u':
+                            self.advance()
+                            if self.current_char == 'n':
+                                self.advance()
+                                if self.current_char == 'g':
+                                    self.advance()
+                                    if self.current_char == None or self.current_char in " \t":
+                                        return (["edikung", 'KEYWORD'])
+                                    else:
+                                        return self.make_Identifier("edikung")
+                                else:
+                                    return self.make_Identifier("edikun")
+                            else:
+                                return self.make_Identifier("ediku")
+                        else:
+                            return self.make_Identifier("edik")
+                    else:
+                        return self.make_Identifier("edi")
+                else:
+                    return self.make_Identifier("ed")
+            else:
+                return self.make_Identifier("e")
 
         elif self.current_char == 'i': 
             self.advance()
