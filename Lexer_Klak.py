@@ -531,7 +531,137 @@ class Lexer:
                 else: return self.make_Identifier("ku")
             else: return self.make_Identifier("k")
 
+        
+        if self.current_char == 's':
+            self.advance()
+            if self.current_char == 'i':
+                self.advance()
+                if self.current_char == 'm':
+                    self.advance()
+                    if self.current_char == 'u':
+                        self.advance()
+                        if self.current_char == 'l':
+                            self.advance()
+                            if self.current_char == 'a':
+                                self.advance()
+                                if self.current_char == None or self.current_char in " \t":
+                                    return (["simula", 'Noiseword'])
+                                else:
+                                    return self.make_Identifier("simula")
+                            else:
+                                return self.make_Identifier("simul")
+                        else:
+                            return self.make_Identifier("simu")
+                    else:
+                        return self.make_Identifier("sim")
+                else:
+                    return self.make_Identifier("si")
+            else:
+                return self.make_Identifier("s")
 
+        if self.current_char == 'w':
+            self.advance()
+            if self.current_char == 'a':
+                self.advance()
+                if self.current_char == 'k':
+                    self.advance()
+                    if self.current_char == 'a':
+                        self.advance()
+                        if self.current_char == 's':
+                            self.advance()
+                            if self.current_char == None or self.current_char in " \t":
+                                return (["wakas", 'Noiseword'])
+                            else:
+                                return self.make_Identifier("wakas")
+                        else:
+                            return self.make_Identifier("waka")
+                    else:
+                        return self.make_Identifier("wak")
+                else:
+                    return self.make_Identifier("wa")
+            else:
+                return self.make_Identifier("w")
+                
+                
+                if self.current_char == 'k':
+            self.advance()
+            if self.current_char == 'a':
+                self.advance()
+                if self.current_char == 'u':
+                    self.advance()
+                    if self.current_char == 'n':
+                        self.advance()
+                        if self.current_char == 'a':
+                            self.advance()
+                            if self.current_char == 'u':
+                                self.advance()
+                                if self.current_char == 'n':
+                                    self.advance()
+                                    if self.current_char == 'a':
+                                        self.advance()
+                                        if self.current_char == 'h':
+                                            self.advance()
+                                            if self.current_char == 'a':
+                                                self.advance()
+                                                if self.current_char == 'n':
+                                                    self.advance()
+                                                    if self.current_char == None or self.current_char in " \t":
+                                                        return (["kaunaunahan", 'Noiseword'])
+                                                    else:
+                                                        return self.make_Ident
+                                                
+            if self.current_char == 'k':
+            self.advance()
+            if self.current_char == 'a':
+                self.advance()
+                if self.current_char == 'd':
+                    self.advance()
+                    if self.current_char == 'u':
+                        self.advance()
+                        if self.current_char == 'l':
+                            self.advance()
+                            if self.current_char == 'u':
+                                self.advance()
+                                if self.current_char == 'd':
+                                    self.advance()
+                                    if self.current_char == 'u':
+                                        self.advance()
+                                        if self.current_char == 'l':
+                                            self.advance()
+                                            if self.current_char == 'u':
+                                                self.advance()
+                                                if self.current_char == 'h':
+                                                    self.advance()
+                                                    if self.current_char == 'a':
+                                                        self.advance()
+                                                        if self.current_char == 'n':
+                                                            self.advance()
+                                                            if self.current_char == None or self.current_char in " \t":
+                                                                return (["kaduluduluhan", 'Noiseword'])
+                                                            else:
+                                                                return self.make_Identifier("kaduluduluhan)
+                                                                
+                                                            if self.current_char == 'p':
+            self.advance()
+            if self.current_char == 'u':
+                self.advance()
+                if self.current_char == 'n':
+                    self.advance()
+                    if self.current_char == 'a':
+                        self.advance()
+                        if self.current_char == None or self.current_char in " \t":
+                            return (["puna", 'Noiseword'])
+                        else:
+                            return self.make_Identifier("puna")
+                    else:
+                        return self.make_Identifier("pu")
+                else:
+                    return self.make_Identifier("p")
+            else:
+                return self.make_Identifier("p")
+
+
+							
 
 
 def run(text, multiLine):         #Starts Program
