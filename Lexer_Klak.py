@@ -53,13 +53,13 @@ class Lexer:
                 self.current_char = self.text[singleCharPos]
         self.pos = singleCharPos
         if self.current_char == "<":  #Single Operators token creation
-            self.tokens.append(['<', 'OPE_LT'])
+            self.tokens.append(['<', '<'])
             self.advance()
         elif self.current_char == ">": 
-            self.tokens.append(['>', 'OPE_GT'])
+            self.tokens.append(['>', '>'])
             self.advance()
         elif self.current_char == "=":
-            self.tokens.append(['=', 'OPE_ASS'])
+            self.tokens.append(['=', '='])
             self.advance()
         elif self.current_char == "!":
             self.tokens.append(['!', 'UNRECOGNIZED'])
@@ -97,13 +97,13 @@ class Lexer:
                 self.douBoolPass = 0
                 if self.current_char == "=":  #"Or Equal" to Boolean Operators
                     if lastChar == "<":
-                        self.tokens.append(['<=', 'OPE_LTEQUAL'])
+                        self.tokens.append(['<=', '<='])
                     elif lastChar == ">":
-                        self.tokens.append(['>=', 'OPE_GTEQUAL'])
+                        self.tokens.append(['>=', '>='])
                     elif lastChar == "=":
-                        self.tokens.append(['==', 'OPE_EQUALTO'])
+                        self.tokens.append(['==', '=='])
                     elif lastChar == "!":
-                        self.tokens.append(['!=', 'OPE_NEQUALTO'])
+                        self.tokens.append(['!=', '!='])
                     self.advance()
                 else:
                     self.SingleOpe()    #Single Boolean Operators
@@ -111,7 +111,7 @@ class Lexer:
             elif self.divPass == 1: #Division Operators
                 self.divPass = 0
                 if self.current_char == "/":
-                    self.tokens.append(['//', 'OPE_INTDIV'])
+                    self.tokens.append(['//', '//'])
                     self.advance()
                 else:
                     self.SingleOpe()
@@ -119,14 +119,14 @@ class Lexer:
             elif self.addPass == 1:  #Addition Symbol Detected
                 self.addPass = 0
                 if lastChar == "+" and self.current_char == "=":      
-                    self.tokens.append(['+=', 'OPE_ADDASS']) #Addition Assignment Operator
+                    self.tokens.append(['+=', '+=']) #Addition Assignment Operator
                     self.advance()
                 else: self.SingleOpe()  #Addition Operator
 
             elif self.subPass  == 1: #Subtraction Symbol Detected
                 self.subPass = 0
                 if lastChar == "-" and self.current_char == "=": 
-                    self.tokens.append(['-=', 'OPE_SUBASS']) #Subtraction Assignment Operator
+                    self.tokens.append(['-=', '-=']) #Subtraction Assignment Operator
                     self.advance()
                 else: self.SingleOpe() #Subtraction Operator
 
