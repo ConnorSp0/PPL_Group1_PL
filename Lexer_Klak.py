@@ -35,7 +35,7 @@ class Lexer:
             self.tokens.append([stringTxt, 'INVALID']) #No Closing double-quotations
 
     def CharChk(self): #Character Checking
-        if self.current_char == "\'":   
+        if self.current_char == "\'":      #Not yet fixed
             stringTxt = ''
             self.advance()
             while self.current_char != '\'':
