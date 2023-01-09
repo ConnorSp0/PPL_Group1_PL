@@ -86,7 +86,6 @@ class Lexer:
                     lastChar = self.text[self.pos + 1]
                     if lastChar == ".":  #Multi-Line Comment detected
                         self.tokens.append(['...', 'OPEN_MULTI_COMMENT'])
-                        self.pos += 1
                         self.FMultiCmnt()
                     else:               #Single-Line Comment detected
                         self.tokens.append(['..', 'SINGLE_COMMENT'])
@@ -164,8 +163,7 @@ class Lexer:
                     if self.pos != 0 and cmntText !='': self.tokens.append([cmntText, 'COMMENT'])
                     self.tokens.append(['...', 'CLOSE_MULTI_COMMENT'])            
                     self.pos += 2
-                    end = 1
-                    break
+                    end=1
                 else:  
                     cmntText += self.current_char
                 self.advance()
@@ -181,6 +179,7 @@ class Lexer:
                 self.ongoingMulti = 1 
             else:       #Multi-Line closed
                 self.ongoingMulti = 0
+                print("Pos:", self.pos)
 
     def make_Tokens(self):   #Creates Tokens
         self.tokens = []
@@ -259,7 +258,7 @@ class Lexer:
                 self.advance()
 
         if self.douBoolPass == 1 or self.divPass == 1 or self.dotPass == 1 or self.addPass==1 or self.subPass==1: 
-            self.DoubleOpeChk()  #Unresolved Operators
+            self.DoubleOpeChk()#Unresolved Operator
         
         for i in self.tokens:   #Output Tokens
             print(f'{i[0]: <20}{i[1]}')
@@ -276,7 +275,6 @@ class Lexer:
         while self.current_char != None and self.current_char in DIGITS + '.':  #Collection of Numerical Characters
             if self.current_char == '.':   #Float Detected
                 if self.text[self.pos +1] == ".":
-                    self.pos -= 1
                     break
                 else: dot_count += 1
             num_str += self.current_char
@@ -307,10 +305,13 @@ class Lexer:
                 self.advance()
                 if self.current_char == None or self.current_char in " \t":
                     return (["at", 'LOGICAL'])
-                else:
-                    return self.make_Identifier("at")
-            else:
-                return self.make_Identifier("a")
+                else: return self.make_Identifier("at")
+            elif self.current_char == 'y':
+                self.advance()
+                if self.current_char == None or self.current_char in " \t":
+                    return (["ay", 'NOISE_WORD'])
+                else: return self.make_Identifier("ay")
+            else: return self.make_Identifier("a")
 
         elif self.current_char == 'o':
             self.advance()
@@ -318,10 +319,8 @@ class Lexer:
                 self.advance()
                 if self.current_char == None or self.current_char in " \t":
                     return (["oh", 'LOGICAL'])
-                else:
-                    return self.make_Identifier("oh")
-            else:
-                return self.make_Identifier("o")
+                else: return self.make_Identifier("oh")
+            else: return self.make_Identifier("o")
 
         elif self.current_char == 'h':
             self.advance()
@@ -335,14 +334,10 @@ class Lexer:
                             self.advance()
                             if self.current_char == None or self.current_char in " \t":
                                 return (["hindi", 'LOGICAL'])
-                            else:
-                                return self.make_Identifier("hindi")
-                        else:
-                            return self.make_Identifier("hind")
-                    else:
-                        return self.make_Identifier("hin")
-                else:
-                    return self.make_Identifier("hi")
+                            else: return self.make_Identifier("hindi")
+                        else:  return self.make_Identifier("hind")
+                    else: return self.make_Identifier("hin")
+                else:return self.make_Identifier("hi")
             elif self.current_char == 'a':
                 self.advance()
                 if self.current_char == 'b':
@@ -694,6 +689,20 @@ class Lexer:
                         else: return self.make_Identifier("kung")  
                     else: return self.make_Identifier("kun")          
                 else: return self.make_Identifier("ku")
+            elif self.current_char == 'l': 
+                self.advance()
+                if self.current_char == 'a': 
+                    self.advance()
+                    if self.current_char == 's': 
+                        self.advance()
+                        if self.current_char == 'e': 
+                            self.advance()
+                            if self.current_char == None or self.current_char in " \t":
+                                return (["klase", 'RESERVED_WORD'])
+                            else: return self.make_Identifier("klase")  
+                        else: return self.make_Identifier("klas")          
+                    else: return self.make_Identifier("kla")
+                else: return self.make_Identifier("kl")
             else: return self.make_Identifier("k")
 
         elif self.current_char == 'b':
@@ -782,7 +791,21 @@ class Lexer:
                 else: return self.make_Identifier("pi")
             elif self.current_char == 'u': 
                 self.advance()
-                if self.current_char == 'n': 
+                if self.current_char == 'w': 
+                    self.advance()
+                    if self.current_char == 'e': 
+                        self.advance()
+                        if self.current_char == 'r': 
+                            self.advance()
+                            if self.current_char == 'a': 
+                                self.advance()
+                                if self.current_char == None or self.current_char in " \t":
+                                    return (["puwera", 'RESERVED_WORD'])
+                                else: return self.make_Identifier("puwera")
+                            else: return self.make_Identifier("puwer")
+                        else: return self.make_Identifier("puwe")
+                    else: return self.make_Identifier("puw")
+                elif self.current_char == 'n': 
                     self.advance()
                     if self.current_char == 'a': 
                         self.advance()
@@ -790,7 +813,15 @@ class Lexer:
                             return (["puna", 'NOISE_WORD'])
                         else: return self.make_Identifier("puna")
                     else: return self.make_Identifier("pun")          
-                else: return self.make_Identifier("pu")       
+                else: return self.make_Identifier("pu") 
+            elif self.current_char == 'a': 
+                self.advance()
+                if self.current_char == 'l': 
+                    self.advance()    
+                    if self.current_char == None or self.current_char in " \t":
+                        return (["pal", 'RESERVED_WORD'])
+                    else: return self.make_Identifier("pal")  
+                else: return self.make_Identifier("pa") 
             else: return self.make_Identifier("p")
 
         elif self.current_char == 'w': 
@@ -819,7 +850,7 @@ class Lexer:
                 else: return self.make_Identifier("wa")
             else: return self.make_Identifier("w")   
 
-        else: return self.make_Identifier(self.current_char)
+        else: return self.make_Identifier("")
         
 def run(text, multiLine):         #Starts Program
     lexer = Lexer(text, multiLine)
