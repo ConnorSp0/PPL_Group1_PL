@@ -1,6 +1,6 @@
 DIGITS = "0123456789"      #Character Sets Comparisons
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-OSYMBOLS = "~`!@#$&_\\:"
+OSYMBOLS = "_*=+\.,/%&|>()[]{<}~!@#$^&\'\""
 IDLIST = DIGITS + LETTERS + "_"
 
 class Lexer:
@@ -274,9 +274,10 @@ class Lexer:
             self.dotPass = 0
         while self.current_char != None and self.current_char in DIGITS + '.':  #Collection of Numerical Characters
             if self.current_char == '.':   #Float Detected
-                if self.text[self.pos +1] == ".":
-                    break
-                else: dot_count += 1
+                dot_count += 1
+                try:
+                    if self.text[self.pos+1] == ".": break
+                except IndexError: pass
             num_str += self.current_char
             self.advance()
 
@@ -290,7 +291,15 @@ class Lexer:
     def make_Identifier(self, key_str):
         invalid = 0
         while self.current_char != None and self.current_char not in " \t" :  #Terminates if space detected
-            if self.current_char in OSYMBOLS and self.current_char != "_": invalid = 1 #Checks invalid Characters
+            if self.current_char in OSYMBOLS and self.current_char != "_": #Checks invalid Characters
+                invalid = 1 
+                if self.current_char in "\'\"": 
+                    invalid=0
+                    break
+                elif self.current_char ==".":
+                    try:
+                        if self.text[self.pos+1] == ".": break
+                    except IndexError: pass 
             key_str += self.current_char  #Collects Characters
             self.advance()
         
