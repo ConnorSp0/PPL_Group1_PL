@@ -617,7 +617,71 @@ class Lexer:
                                 else: return self.make_Identifier("kabtol")
                             else: return self.make_Identifier("kabto")
                         else: return self.make_Identifier("kabt")
-                    else: return self.make_Identifier("kab")   
+                    else: return self.make_Identifier("kab")
+                elif self.current_char == 'u': 
+                    self.advance()
+                    if self.current_char == 'n': 
+                        self.advance()
+                        if self.current_char == 'a': 
+                            self.advance()
+                            if self.current_char == 'u': 
+                                self.advance()
+                                if self.current_char == 'n': 
+                                    self.advance()
+                                    if self.current_char == 'a': 
+                                        self.advance()
+                                        if self.current_char == 'h': 
+                                            self.advance()
+                                            if self.current_char == 'a': 
+                                                self.advance()
+                                                if self.current_char == 'n': 
+                                                    self.advance()
+                                                    if self.current_char == None or self.current_char in " \t":
+                                                        return (["kaunaunahan", 'NOISE_WORD'])
+                                                    else: return self.make_Identifier("kaunaunahan")
+                                                else: return self.make_Identifier("kaunaunaha") 
+                                            else: return self.make_Identifier("kaunaunah")       
+                                        else: return self.make_Identifier("kaunauna")             
+                                    else: return self.make_Identifier("kaunaun")                
+                                else: return self.make_Identifier("kaunau")
+                            else: return self.make_Identifier("kauna")
+                        else: return self.make_Identifier("kaun")
+                    else: return self.make_Identifier("kau")
+                elif self.current_char == 'd': 
+                    self.advance()
+                    if self.current_char == 'u': 
+                        self.advance()
+                        if self.current_char == 'l': 
+                            self.advance()
+                            if self.current_char == 'u': 
+                                self.advance()
+                                if self.current_char == 'd': 
+                                    self.advance()
+                                    if self.current_char == 'u': 
+                                        self.advance()
+                                        if self.current_char == 'l': 
+                                            self.advance()
+                                            if self.current_char == 'u': 
+                                                self.advance()
+                                                if self.current_char == 'h': 
+                                                    self.advance()
+                                                    if self.current_char == 'a': 
+                                                        self.advance()
+                                                        if self.current_char == 'n': 
+                                                            self.advance()
+                                                            if self.current_char == None or self.current_char in " \t":
+                                                                return (["kaduluduluhan", 'NOISE_WORD'])
+                                                            else: return self.make_Identifier("kaduluduluhan")    
+                                                        else: return self.make_Identifier("kaduluduluha")
+                                                    else: return self.make_Identifier("kaduluduluh")
+                                                else: return self.make_Identifier("kaduludulu") 
+                                            else: return self.make_Identifier("kaduludul")       
+                                        else: return self.make_Identifier("kaduludu")             
+                                    else: return self.make_Identifier("kadulud")                
+                                else: return self.make_Identifier("kadulu")
+                            else: return self.make_Identifier("kadul")
+                        else: return self.make_Identifier("kadu")
+                    else: return self.make_Identifier("kad")
                 else: return self.make_Identifier("ka")
             elif self.current_char == 'u': 
                 self.advance()
@@ -716,6 +780,17 @@ class Lexer:
                         else: return self.make_Identifier("pind")
                     else: return self.make_Identifier("pin")          
                 else: return self.make_Identifier("pi")
+            elif self.current_char == 'u': 
+                self.advance()
+                if self.current_char == 'n': 
+                    self.advance()
+                    if self.current_char == 'a': 
+                        self.advance()
+                        if self.current_char == None or self.current_char in " \t":
+                            return (["puna", 'NOISE_WORD'])
+                        else: return self.make_Identifier("puna")
+                    else: return self.make_Identifier("pun")          
+                else: return self.make_Identifier("pu")       
             else: return self.make_Identifier("p")
 
         elif self.current_char == 'w': 
