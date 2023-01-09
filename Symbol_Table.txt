@@ -1,77 +1,531 @@
 SYMBOL TABLE
 -----------------------------------------------------------------
 LEXEME              TOKEN
-ilabas              KEYWORD
-ila2                IDENTIFIER
-ila!                INVALID
-wala                KEYWORD
-wala                KEYWORD
-labasmuna           KEYWORD
+tuloy               KEYWORD
+totooo              IDENTIFIER
+to!                 INVALID
+totooo1             IDENTIFIER
+kabtol              KEYWORD
+karakter            RESERVED_WORD
+karakt1             IDENTIFIER
+pindutan            KEYWORD
+pundutan            IDENTIFIER
+pindutan1           IDENTIFIER
+pindutan!           INVALID
+pindu               IDENTIFIER
 -----------------------------------------------------------------
 
 SYMBOL TABLE
 -----------------------------------------------------------------
 LEXEME              TOKEN
-ilimbsd             IDENTIFIER
-ilimbag             KEYWORD
-ilimbags            KEYWORD
-ilimbags2           IDENTIFIER
-ilimbag2            IDENTIFIER
-ilimbag!            INVALID
-il1mbag             IDENTIFIER
+tuloy               KEYWORD
+totoo               RESERVED_WORD
+to!                 INVALID
+totoo1              IDENTIFIER
+kabtol              KEYWORD
+karakter            RESERVED_WORD
+karakt1             IDENTIFIER
+pindutan            KEYWORD
+pundutan            IDENTIFIER
+pindutan1           IDENTIFIER
+pindutan!           INVALID
+pindu               IDENTIFIER
 -----------------------------------------------------------------
 
 SYMBOL TABLE
 -----------------------------------------------------------------
 LEXEME              TOKEN
-0.12                FLOAT
+tuloy               KEYWORD
+totoo               RESERVED_WORD
+to!                 INVALID
+totoo1              IDENTIFIER
+kabtol              KEYWORD
+karakter            RESERVED_WORD
+karakt1             IDENTIFIER
+pindutan            KEYWORD
+pundutan            IDENTIFIER
+puna                NOISE_WORD
+puna2               IDENTIFIER
+kaduluduluhan       IDENTIFIER
+kaduluduluhan       NOISE_WORD
+kaunaunahan         NOISE_WORD
+kaunau              IDENTIFIER
+kaunauna            IDENTIFIER
 -----------------------------------------------------------------
 
 SYMBOL TABLE
 -----------------------------------------------------------------
 LEXEME              TOKEN
-.12.12              INVALID
+tuloy               KEYWORD
+totoo               RESERVED_WORD
+to!                 INVALID
+totoo1              IDENTIFIER
+kabtol              KEYWORD
+karakter            RESERVED_WORD
+karakt1             IDENTIFIER
+pindutan            KEYWORD
+pundutan            IDENTIFIER
+puna                NOISE_WORD
+puna2               IDENTIFIER
+kaduluduluh         IDENTIFIER
+kaduluduluhan       NOISE_WORD
+kaunaunahan         NOISE_WORD
+kaunau              IDENTIFIER
+kaunauna            IDENTIFIER
 -----------------------------------------------------------------
 
 SYMBOL TABLE
 -----------------------------------------------------------------
 LEXEME              TOKEN
-12.12.12            INVALID
-12...12             INVALID
-11..12...13....14   INVALID
-.12.12.12           INVALID
-.12..13             INVALID
+puwera              RESERVED_WORD
+pal                 RESERVED_WORD
+pindutan            KEYWORD
+pa                  IDENTIFIER
+pal1                IDENTIFIER
+pal!                INVALID
+puwera1             IDENTIFIER
+puwer               IDENTIFIER
+puwe                IDENTIFIER
+pindutan!           INVALID
+pinduta             IDENTIFIER
+pindut              IDENTIFIER
+pindutan2           IDENTIFIER
 -----------------------------------------------------------------
 
 SYMBOL TABLE
 -----------------------------------------------------------------
 LEXEME              TOKEN
-12.12.12            INVALID
-12                  INTEGER
+klase               RESERVED_WORD
+kung                RESERVED_WORD
+kaduluduluhan       NOISE_WORD
+kaunaunahan         NOISE_WORD
+kla                 IDENTIFIER
+klas                IDENTIFIER
+ku                  IDENTIFIER
+kun                 IDENTIFIER
+kung1               IDENTIFIER
+kaduludu            IDENTIFIER
+kaduluduluh         IDENTIFIER
+ddunau              IDENTIFIER
+kaun                IDENTIFIER
+kaunau              IDENTIFIER
+kaunaunahan@        INVALID
+klase!              INVALID
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+dduma               IDENTIFIER
+de                  IDENTIFIER
+de                  IDENTIFIER
+23                  INTEGER
+dede                IDENTIFIER
+23.5.5              INVALID
+45                  INTEGER
 ...                 OPEN_MULTI_COMMENT
-.12                 COMMENT
-11..12              COMMENT
+5..45               COMMENT
 ...                 CLOSE_MULTI_COMMENT
-13                  INTEGER
-...                 OPEN_MULTI_COMMENT
-..14                COMMENT
-.12.12.12           COMMENT
-.12..13             COMMENT
+.                   UNRECOGNIZED
 -----------------------------------------------------------------
 
 SYMBOL TABLE
 -----------------------------------------------------------------
 LEXEME              TOKEN
-12.12.12            INVALID
-12                  INTEGER
+23.5.5              INVALID
+45                  INTEGER
 ...                 OPEN_MULTI_COMMENT
-12                  COMMENT
-11..12              COMMENT
+5..45               COMMENT
 ...                 CLOSE_MULTI_COMMENT
-13                  INTEGER
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
 ...                 OPEN_MULTI_COMMENT
-.14                 COMMENT
-.12.12.12           COMMENT
-.12..13             COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+..                  SINGLE_COMMENT
+45..45 ...          COMMENT
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+23.5.5              INVALID
+45                  INTEGER
+..                  SINGLE_COMMENT
+45..45 ...          COMMENT
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+0.5                 FLOAT
+45                  INTEGER
+..                  SINGLE_COMMENT
+45..45 ...          COMMENT
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+0.5                 FLOAT
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+5..45               COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+0.5                 FLOAT
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+45..45              COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+0.5                 FLOAT
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+45..45              COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+0.5                 FLOAT
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+45..45              COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+0.5                 FLOAT
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+45..45              COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+0.5                 FLOAT
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+45..45              COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+0.5                 FLOAT
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+45..45              COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+0.5                 FLOAT
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+45..45              COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+0.5                 FLOAT
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+45..45              COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+0.5                 FLOAT
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+45..45              COMMENT
+...                 CLOSE_MULTI_COMMENT
+.                   UNRECOGNIZED
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+0.5                 FLOAT
+45                  INTEGER
+...                 OPEN_MULTI_COMMENT
+45..45              COMMENT
+...                 CLOSE_MULTI_COMMENT
 -----------------------------------------------------------------
 
