@@ -18,22 +18,40 @@ class Lexer:
         self.current_char = self.text[self.pos] if self.pos < len(self.text) else None #Return "None" if last character
 
     def StringChk(self): #String Checking
-        self.endQt = 0
+        endQt = 0
         stringTxt = ''
         self.advance()
         while self.current_char != None:  #Collects characters inside of double-quotations
             if self.current_char == "\"":
-                self.endQt = 1
+                endQt = 1
+                self.tokens.append(['\"', '\"'])
                 self.tokens.append([stringTxt, 'STRING'])  #Create tokens
-                self.tokens.append(['\"', 'CLOSE_DOUBLEQT'])
-                break
+                self.tokens.append(['\"', '\"'])
             else:
                 stringTxt += self.current_char
             self.advance()
-        if self.endQt == 0: self.tokens.append([stringTxt, 'STRING']) #No Closing double-quotations
+        if endQt == 0: 
+            stringTxt = "\"" + stringTxt
+            self.tokens.append([stringTxt, 'INVALID']) #No Closing double-quotations
 
     def CharChk(self): #Character Checking
-        self.advance()
+        if self.current_char == "\'":   
+            stringTxt = ''
+            self.advance()
+            while self.current_char != '\'':
+                stringTxt += self.current_char
+                self.advance()
+            if len(stringTxt) == 1:
+                self.tokens.append([stringTxt, 'CHARACTER'])
+            else:
+                self.tokens.append([stringTxt, 'INVALID'])
+            if self.current_char == "'": self.tokens.append(["'", "'"])
+            self.advance()
+        else:
+            self.tokens.append([self.current_char, 'CHARACTER'])
+            self.advance()
+
+
         if self.current_char == '\'': self.tokens.append(['\'', 'CLOSE_SINGLEQT']) #Empty Character Declaration
         else: 
             if self.current_char != None: #Character Declared
@@ -204,13 +222,13 @@ class Lexer:
                 self.subPass = 1
                 self.advance()
             elif self.current_char == '*':
-                self.tokens.append(['*', 'OPE_MUL'])
+                self.tokens.append(['*', '*'])
                 self.advance()
             elif self.current_char == '/':    #Division Operator Detected
                 self.divPass = 1
                 self.advance()
             elif self.current_char == '%':
-                self.tokens.append(['%', 'OPE_MOD'])
+                self.tokens.append(['%', '%'])
                 self.advance()
             elif self.current_char in '<>=!': #Boolean Operator Detected
                 self.douBoolPass = 1
@@ -219,34 +237,32 @@ class Lexer:
                 self.dotPass = 1
                 self.advance()
             elif self.current_char == '^':
-                self.tokens.append(['^', 'OPE_EXP'])
+                self.tokens.append(['^', '^'])
                 self.advance()
             elif self.current_char == '(':
-                self.tokens.append(['(', 'OPEN_PAREN'])
+                self.tokens.append(['(', '('])
                 self.advance()
             elif self.current_char == ')':
-                self.tokens.append([')', 'CLOSE_PAREN'])
+                self.tokens.append([')', ')'])
                 self.advance()
             elif self.current_char == '[':
-                self.tokens.append(['[', 'OPEN_SQR'])
+                self.tokens.append(['[', '['])
                 self.advance()
             elif self.current_char == ']':
-                self.tokens.append([']', 'CLOSE_SQR'])
+                self.tokens.append([']', ']'])
                 self.advance()
             elif self.current_char == ',':
-                self.tokens.append([',', 'COMMA'])
+                self.tokens.append([',', ','])
                 self.advance()
             elif self.current_char == ';':
-                self.tokens.append([';', 'SEMICOLON'])
+                self.tokens.append([';', ';'])
                 self.advance()
             elif self.current_char == "\"":     #String Detected
-                self.tokens.append(['\"', 'OPEN_DOUBLEQT'])
                 self.StringChk()
-                self.advance()
             elif self.current_char == "\'":     #Character Detected
-                self.tokens.append(['\'', 'OPEN_SINGLEQT'])
-                self.CharChk()
+                self.tokens.append(['\'', '\''])
                 self.advance()
+                self.CharChk()
             elif self.current_char in DIGITS:   #Digits Detected 
                 self.tokens.append(self.make_Number())
             elif self.current_char in LETTERS:  #Letters Detected
