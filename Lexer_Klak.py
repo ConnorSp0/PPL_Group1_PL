@@ -20,45 +20,46 @@ class Lexer:
     def StringChk(self): #String Checking
         endQt = 0
         stringTxt = ''
+        qtPos = self.pos
         self.advance()
-        while self.current_char != None:  #Collects characters inside of double-quotations
-            if self.current_char == "\"":
+        while self.current_char != None:  #Collects characters 
+            if self.current_char == "\"":    #End Quotation Detected
                 endQt = 1
                 self.tokens.append(['\"', '\"'])
-                self.tokens.append([stringTxt, 'STRING'])  #Create tokens
+                if self.pos != qtPos+1: self.tokens.append([stringTxt, 'STRING'])  #Condition for not empty string
                 self.tokens.append(['\"', '\"'])
             else:
                 stringTxt += self.current_char
             self.advance()
-        if endQt == 0: 
+        if endQt == 0:      #No end Quotation
             stringTxt = "\"" + stringTxt
             self.tokens.append([stringTxt, 'INVALID']) #No Closing double-quotations
 
     def CharChk(self): #Character Checking
-        if self.current_char == "\'":      #Not yet fixed
-            stringTxt = ''
-            self.advance()
-            while self.current_char != '\'':
-                stringTxt += self.current_char
-                self.advance()
-            if len(stringTxt) == 1:
-                self.tokens.append([stringTxt, 'CHAR'])
+        endQt = 0
+        stringTxt = ''
+        qtPos = self.pos
+        self.advance()
+        while self.current_char != None:
+            if self.current_char == '\'':
+                endQt = 1
+                if len(stringTxt) == 1:           #1 Character
+                    self.tokens.append(['\'', "'"]) 
+                    self.tokens.append([stringTxt, 'CHARACTER'])
+                    self.tokens.append(['\'', '\''])
+                else:         
+                    if self.pos == qtPos+1:     #No Character
+                        self.tokens.append(['\'', "'"]) 
+                        self.tokens.append(['\'', "'"]) 
+                    else:                        #Multiple Character
+                        stringTxt = "\'" + stringTxt + "\'"     
+                        self.tokens.append([stringTxt, 'INVALID'])
             else:
-                self.tokens.append([stringTxt, 'INVALID'])
-            if self.current_char == "'": self.tokens.append(["'", "'"])
+                stringTxt += self.current_char
             self.advance()
-        else:
-            self.tokens.append([self.current_char, 'CHAR'])
-            self.advance()
-
-
-        if self.current_char == '\'': self.tokens.append(['\'', '\'']) #Empty Character Declaration
-        else: 
-            if self.current_char != None: #Character Declared
-                self.tokens.append([self.current_char, 'CHAR'])
-                self.advance()
-                if self.current_char == '\'': self.tokens.append(['\'', '\'']) #Closing single-quotation 
-
+        if endQt == 0: 
+            stringTxt = "\'" + stringTxt 
+            self.tokens.append([stringTxt, 'INVALID']) #No Closing single-quotation
 
     def SingleOpe(self): #Single-Digit Operation Checking
         singleCharPos = 0                                                      
@@ -260,8 +261,6 @@ class Lexer:
             elif self.current_char == "\"":     #String Detected
                 self.StringChk()
             elif self.current_char == "\'":     #Character Detected
-                self.tokens.append(['\'', '\''])
-                self.advance()
                 self.CharChk()
             elif self.current_char in DIGITS:   #Digits Detected 
                 self.tokens.append(self.make_Number())

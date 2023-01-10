@@ -11,3 +11,132 @@ a                   IDENTIFIER
 "                   INVALID
 -----------------------------------------------------------------
 
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+"                   INVALID
+"                   "
+"                   "
+"a   bac            INVALID
+"                   "
+a    sdsd@@#123'    STRING
+"                   "
+a                   ID
+"                   INVALID
+'                   '
+'                   INVALID
+'                   '
+'                   '
+'                   '
+'                   '
+'                   INVALID
+'                   '
+'dsds2321           INVALID
+a                   ID
+'                   '
+'                   INVALID
+'                   '
+'sdada'             INVALID
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+'                   '
+'                   INVALID
+'                   '
+'                   '
+'                   '
+'                   '
+'                   INVALID
+'                   '
+'dsds2321           INVALID
+a                   ID
+'                   '
+'                   INVALID
+'                   '
+'sdada'             INVALID
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+'                   '
+'                   INVALID
+'                   '
+'                   '
+'                   '
+'                   '
+'                   INVALID
+'                   '
+'dsds2321           INVALID
+a                   ID
+'                   '
+'                   INVALID
+'                   '
+'sdada'             INVALID
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+'                   '
+'                   INVALID
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+'                   '
+'                   INVALID
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+"                   INVALID
+"                   "
+"                   "
+"a   bac            INVALID
+"                   "
+a    sdsd@@#123'    STRING
+"                   "
+a                   ID
+"                   INVALID
+'                   '
+'                   '
+'                   '
+a                   CHARACTER
+'                   '
+'a                  INVALID
+'adsds2321          INVALID
+a                   ID
+'                   INVALID
+'asdada'            INVALID
+-----------------------------------------------------------------
+
+SYMBOL TABLE
+-----------------------------------------------------------------
+LEXEME              TOKEN
+"                   INVALID
+"                   "
+"                   "
+"a   bac            INVALID
+"                   "
+a    sdsd@@#123'    STRING
+"                   "
+a                   ID
+"                   INVALID
+'                   '
+'                   '
+'                   '
+a                   CHARACTER
+'                   '
+'a                  INVALID
+'adsds2321          INVALID
+a                   ID
+'                   INVALID
+'asdada'            INVALID
+'                   INVALID
+-----------------------------------------------------------------
+
