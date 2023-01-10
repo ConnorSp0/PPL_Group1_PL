@@ -328,7 +328,7 @@ class Lexer:
             if self.current_char == 't':
                 self.advance()
                 if self.current_char == None or self.current_char in " \t":
-                    return (["at", 'LOGICAL'])
+                    return (["at", 'at'])
                 else: return self.make_Identifier("at")
             elif self.current_char == 'y':
                 self.advance()
@@ -342,7 +342,7 @@ class Lexer:
             if self.current_char == 'h':
                 self.advance()
                 if self.current_char == None or self.current_char in " \t":
-                    return (["oh", 'LOGICAL'])
+                    return (["oh", 'oh'])
                 else: return self.make_Identifier("oh")
             else: return self.make_Identifier("o")
 
@@ -357,7 +357,7 @@ class Lexer:
                         if self.current_char == 'i':
                             self.advance()
                             if self.current_char == None or self.current_char in " \t":
-                                return (["hindi", 'LOGICAL'])
+                                return (["hindi", 'hindi'])
                             else: return self.make_Identifier("hindi")
                         else:  return self.make_Identifier("hind")
                     else: return self.make_Identifier("hin")
@@ -373,7 +373,7 @@ class Lexer:
                             if self.current_char == 'g':
                                 self.advance()
                                 if self.current_char == None or self.current_char in " \t":   #habang Keyword
-                                    return (["habang", 'KEYWORD'])
+                                    return (["habang", 'habang'])
                                 else: return self.make_Identifier("habang")
                             else: return self.make_Identifier("haban")
                         else: return self.make_Identifier("haba")
@@ -388,7 +388,7 @@ class Lexer:
                 if self.current_char == 'i':
                     self.advance()
                     if self.current_char == None or self.current_char in " \t":  #edi Keyword
-                        return (["edi", 'KEYWORD'])
+                        return (["edi", 'edi'])
                     elif self.current_char == 'k':
                         self.advance()
                         if self.current_char == 'u':
@@ -429,11 +429,11 @@ class Lexer:
                                 if self.current_char == 'g':
                                     self.advance()
                                     if self.current_char == None or self.current_char in " \t":   #ilimbag Keyword
-                                        return (["ilimbag", 'KEYWORD'])
+                                        return (["ilimbag", 'ilimbag'])
                                     elif self.current_char == 's':
                                         self.advance()
                                         if self.current_char == None or self.current_char in " \t":   #ilimbags Keyword
-                                            return (["ilimbags", 'KEYWORD'])
+                                            return (["ilimbags", 'ilimbags'])
                                         else: return self.make_Identifier("ilimbags")
                                     else: return self.make_Identifier("ilimbag")
                                 else: return self.make_Identifier("ilimba")
@@ -449,7 +449,7 @@ class Lexer:
                             if self.current_char == 's': 
                                 self.advance()
                                 if self.current_char == None or self.current_char in " \t":   #ilabas Reserved Word
-                                    return (["ilabas", 'RESERVED_WORD'])
+                                    return (["ilabas", 'ilabas'])
                                 else: return self.make_Identifier("ilabas")
                             else: return self.make_Identifier("ilaba")
                         else: return self.make_Identifier("ilab")
@@ -470,7 +470,7 @@ class Lexer:
                             if self.current_char == 'n':
                                 self.advance()
                                 if self.current_char == None or self.current_char in " \t":  #lagyan Keyword
-                                    return (["lagyan", 'KEYWORD'])
+                                    return (["lagyan", 'lagyan'])
                                 else: return self.make_Identifier("lagyan")
                             else: return self.make_Identifier("lagya")
                         else: return self.make_Identifier("lagy")
@@ -490,7 +490,7 @@ class Lexer:
                                         if self.current_char == 'a': 
                                             self.advance()
                                             if self.current_char == None or self.current_char in " \t":   #labasmuna Reserved Word
-                                                return (["labasmuna", 'RESERVED_WORD'])
+                                                return (["labasmuna", 'labasmuna'])
                                             else: return self.make_Identifier("labasmuna")
                                         else: return self.make_Identifier("labasmun")
                                     else: return self.make_Identifier("labasmu")
@@ -510,7 +510,7 @@ class Lexer:
                             if self.current_char == 'g':
                                 self.advance()
                                 if self.current_char == None or self.current_char in " \t":   #lutang Reserved Word
-                                    return (["lutang", 'RESERVED_WORD'])
+                                    return (["lutang", 'lutang'])
                                 else: return self.make_Identifier("lutang")
                             else: return self.make_Identifier("lutan")
                         else: return self.make_Identifier("luta")
@@ -531,7 +531,7 @@ class Lexer:
                             if self.current_char == 'o':
                                 self.advance()
                                 if self.current_char == None or self.current_char in " \t":   #numero Reserved Word
-                                    return (["numero", 'RESERVED_WORD'])
+                                    return (["numero", 'numero'])
                                 else: return self.make_Identifier("numero")
                             else: return self.make_Identifier("numer")
                         else: return self.make_Identifier("nume")
@@ -552,7 +552,7 @@ class Lexer:
                             if self.current_char == 'a':
                                 self.advance()
                                 if self.current_char == None or self.current_char in " \t":    #salita Reserved Word
-                                    return (["salita", 'RESERVED_WORD'])
+                                    return (["salita", 'salita'])
                                 else: return self.make_Identifier("salita")
                             else: return self.make_Identifier("salit")
                         else: return self.make_Identifier("sali")
@@ -567,7 +567,7 @@ class Lexer:
                         if self.current_char == 'k':
                             self.advance()
                             if self.current_char == None or self.current_char in " \t":   #subok Reserved Word
-                                return (["subok", 'RESERVED_WORD'])
+                                return (["subok", 'subok'])
                             else: return self.make_Identifier("subok")
                         else: return self.make_Identifier("subo")
                     else: return self.make_Identifier("sub")
@@ -583,7 +583,7 @@ class Lexer:
                             if self.current_char == 'a':
                                 self.advance()
                                 if self.current_char == None or self.current_char in " \t":   #simula Noise Word
-                                    return (["simula", 'NOISE_WORD'])
+                                    return (["simula", 'simula'])
                                 else: return self.make_Identifier("simula")
                             else: return self.make_Identifier("simul")
                         else: return self.make_Identifier("simu")
@@ -593,7 +593,7 @@ class Lexer:
                     if self.current_char == 'a':
                         self.advance()
                         if self.current_char == None or self.current_char in " \t":    #sira Reserved Word
-                            return (["sira", 'RESERVED_WORD'])
+                            return (["sira", 'sira'])
                         else: return self.make_Identifier("sira")
                     else: return self.make_Identifier("sir")
                 else: return self.make_Identifier("si")
@@ -616,7 +616,7 @@ class Lexer:
                                     if self.current_char == 'r':
                                         self.advance()
                                         if self.current_char == None or self.current_char in " \t":  #karakter Reserved Word
-                                             return (["karakter", 'RESERVED_WORD'])
+                                             return (["karakter", 'karakter'])
                                         else: return self.make_Identifier("karakter")
                                     else: return self.make_Identifier("karakte")
                                 else: return self.make_Identifier("karakt")
@@ -632,7 +632,7 @@ class Lexer:
                             if self.current_char == 'l': 
                                 self.advance()
                                 if self.current_char == None or self.current_char in " \t":  #kabtol Reserved Word
-                                    return (["kabtol", 'RESERVED_WORD'])
+                                    return (["kabtol", 'kabtol'])
                                 else: return self.make_Identifier("kabtol")
                             else: return self.make_Identifier("kabto")
                         else: return self.make_Identifier("kabt")
@@ -656,7 +656,7 @@ class Lexer:
                                                 if self.current_char == 'n': 
                                                     self.advance()
                                                     if self.current_char == None or self.current_char in " \t":   #kaunaunahan Noise Word
-                                                        return (["kaunaunahan", 'NOISE_WORD'])
+                                                        return (["kaunaunahan", 'kaunaunahan'])
                                                     else: return self.make_Identifier("kaunaunahan")
                                                 else: return self.make_Identifier("kaunaunaha") 
                                             else: return self.make_Identifier("kaunaunah")       
@@ -689,7 +689,7 @@ class Lexer:
                                                         if self.current_char == 'n': 
                                                             self.advance()
                                                             if self.current_char == None or self.current_char in " \t":  #kaduluduluhan Noise Word
-                                                                return (["kaduluduluhan", 'NOISE_WORD'])
+                                                                return (["kaduluduluhan", 'kaduluduluhan'])
                                                             else: return self.make_Identifier("kaduluduluhan")    
                                                         else: return self.make_Identifier("kaduluduluha")
                                                     else: return self.make_Identifier("kaduluduluh")
@@ -709,7 +709,7 @@ class Lexer:
                     if self.current_char == 'g': 
                         self.advance()
                         if self.current_char == None or self.current_char in " \t":   #kung Reserved Word
-                            return (["kung", 'RESERVED_WORD'])
+                            return (["kung", 'kung'])
                         else: return self.make_Identifier("kung")  
                     else: return self.make_Identifier("kun")          
                 else: return self.make_Identifier("ku")
@@ -722,7 +722,7 @@ class Lexer:
                         if self.current_char == 'e': 
                             self.advance()
                             if self.current_char == None or self.current_char in " \t":    #klase Reserved Word
-                                return (["klase", 'RESERVED_WORD'])
+                                return (["klase", 'klase'])
                             else: return self.make_Identifier("klase")  
                         else: return self.make_Identifier("klas")          
                     else: return self.make_Identifier("kla")
@@ -736,7 +736,7 @@ class Lexer:
                 if self.current_char == 'l':
                     self.advance()
                     if self.current_char == None or self.current_char in " \t":   #bul Reserved Word
-                        return (["bul", 'RESERVED_WORD'])
+                        return (["bul", 'bul'])
                     else: return self.make_Identifier("bul")
                 else: return self.make_Identifier("bu")
             else: return self.make_Identifier("b")
@@ -752,7 +752,7 @@ class Lexer:
                         if self.current_char == 'o':
                             self.advance()
                             if self.current_char == None or self.current_char in " \t":    #totoo Reserved Word
-                                return (["totoo", 'RESERVED_WORD'])
+                                return (["totoo", 'totoo'])
                             else: return self.make_Identifier("totoo")
                         else: return self.make_Identifier("toto")
                     else: return self.make_Identifier("tot")
@@ -766,7 +766,7 @@ class Lexer:
                         if self.current_char == 'y': 
                             self.advance()
                             if self.current_char == None or self.current_char in " \t":    #tuloy Reserved Word
-                                return (["tuloy", 'RESERVED_WORD'])
+                                return (["tuloy", 'tuloy'])
                             else: return self.make_Identifier("tuloy")
                         else: return self.make_Identifier("tulo")
                     else: return self.make_Identifier("tul")          
@@ -782,7 +782,7 @@ class Lexer:
                     if self.current_char == 'i':
                         self.advance()
                         if self.current_char == None or self.current_char in " \t":    #mali Reserved Word
-                            return (["mali", 'RESERVED_WORD'])
+                            return (["mali", 'mali'])
                         else: return self.make_Identifier("mali")
                     else: return self.make_Identifier("mal")
                 else: return self.make_Identifier("ma")
@@ -805,7 +805,7 @@ class Lexer:
                                     if self.current_char == 'n': 
                                         self.advance()
                                         if self.current_char == None or self.current_char in " \t":   #pindutan Reserved Word
-                                            return (["pindutan", 'RESERVED_WORD'])
+                                            return (["pindutan", 'pindutan'])
                                         else: return self.make_Identifier("pindutan")
                                     else: return self.make_Identifier("pinduta")
                                 else: return self.make_Identifier("pindut")
@@ -824,7 +824,7 @@ class Lexer:
                             if self.current_char == 'a': 
                                 self.advance()
                                 if self.current_char == None or self.current_char in " \t":  #puwera Reserved Word
-                                    return (["puwera", 'RESERVED_WORD'])
+                                    return (["puwera", 'puwera'])
                                 else: return self.make_Identifier("puwera")
                             else: return self.make_Identifier("puwer")
                         else: return self.make_Identifier("puwe")
@@ -834,7 +834,7 @@ class Lexer:
                     if self.current_char == 'a': 
                         self.advance()
                         if self.current_char == None or self.current_char in " \t":   #puna Noise Word
-                            return (["puna", 'NOISE_WORD'])
+                            return (["puna", 'puna'])
                         else: return self.make_Identifier("puna")
                     else: return self.make_Identifier("pun")          
                 else: return self.make_Identifier("pu") 
@@ -843,7 +843,7 @@ class Lexer:
                 if self.current_char == 'l': 
                     self.advance()    
                     if self.current_char == None or self.current_char in " \t":     #pal Reserved Word
-                        return (["pal", 'RESERVED_WORD'])
+                        return (["pal", 'pal'])
                     else: return self.make_Identifier("pal")  
                 else: return self.make_Identifier("pa") 
             else: return self.make_Identifier("p")
@@ -857,7 +857,7 @@ class Lexer:
                     if self.current_char == 'a': 
                         self.advance()
                         if self.current_char == None or self.current_char in " \t":    #wala Reserved Word
-                            return (["wala", 'RESERVED_WORD'])
+                            return (["wala", 'wala'])
                         else: return self.make_Identifier("wala")   
                     else: return self.make_Identifier("wal")
                 elif self.current_char == 'k':
@@ -867,7 +867,7 @@ class Lexer:
                         if self.current_char == 's':
                             self.advance()
                             if self.current_char == None or self.current_char in " \t":    #wakas Noise Word
-                                return (["wakas", 'NOISE_WORD'])
+                                return (["wakas", 'wakas'])
                             else: return self.make_Identifier("wakas")
                         else: return self.make_Identifier("waka")
                     else: return self.make_Identifier("wak")
