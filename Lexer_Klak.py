@@ -86,12 +86,6 @@ class Lexer:
         elif self.current_char == "/":
             self.tokens.append(['/', '/'])
             self.advance()
-        elif self.current_char == "+":
-            self.tokens.append(['+', '+'])
-            self.advance()
-        elif self.current_char == "-":
-            self.tokens.append(['-', '-'])
-            self.advance()
 
     def DoubleOpeChk(self):  #Double-Digit Operation Checking
         try:
@@ -135,20 +129,7 @@ class Lexer:
                 else:
                     self.SingleOpe()
 
-            elif self.addPass == 1:  #Addition Symbol Detected
-                self.addPass = 0
-                if lastChar == "+" and self.current_char == "=":      
-                    self.tokens.append(['+=', '+=']) #Addition Assignment Operator
-                    self.advance()
-                else: self.SingleOpe()  #Addition Operator
-
-            elif self.subPass  == 1: #Subtraction Symbol Detected
-                self.subPass = 0
-                if lastChar == "-" and self.current_char == "=": 
-                    self.tokens.append(['-=', '-=']) #Subtraction Assignment Operator
-                    self.advance()
-                else: self.SingleOpe() #Subtraction Operator
-
+            
     def SinglCmnt(self):   #Single-Line Comment Checking
         max = len(self.text)
         cmntTxt = ''
@@ -198,7 +179,6 @@ class Lexer:
                 self.ongoingMulti = 1 
             else:       #Multi-Line closed
                 self.ongoingMulti = 0
-                print("Pos:", self.pos)
 
     def make_Tokens(self):   #Creates Tokens
         self.tokens = []
@@ -213,14 +193,14 @@ class Lexer:
                 self.advance()
             elif self.current_char in ' \t': #Spaces detected
                 self.advance()
-            elif self.douBoolPass == 1 or self.divPass == 1 or self.dotPass == 1 or self.addPass == 1 or self.subPass == 1:  #Probable Double Operator detected
+            elif self.douBoolPass == 1 or self.divPass == 1 or self.dotPass == 1:  #Probable Double Operator detected
                 if self.dotPass ==1 and self.current_char in DIGITS: self.tokens.append(self.make_Number())
                 else: self.DoubleOpeChk()
             elif self.current_char == '+':
-                self.addPass = 1
+                self.tokens.append(['+', '+'])
                 self.advance()
             elif self.current_char == '-':                           #Single Character Detection
-                self.subPass = 1
+                self.tokens.append(['-', '-'])
                 self.advance()
             elif self.current_char == '*':
                 self.tokens.append(['*', '*'])
@@ -333,7 +313,7 @@ class Lexer:
             elif self.current_char == 'y':
                 self.advance()
                 if self.current_char == None or self.current_char in " \t":
-                    return (["ay", 'NOISE_WORD'])
+                    return (["ay", 'ay'])
                 else: return self.make_Identifier("ay")
             else: return self.make_Identifier("a")
 
