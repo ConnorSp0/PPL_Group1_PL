@@ -149,9 +149,12 @@ class Lexer:
         except IndexError:   #No succeeding Comments 
             self.ongoingMulti = 1   #Multi-line not closed
             self.advance()
+            self.advance()
         else:       
-            self.pos += 2     #Starting Adjustments
+            self.pos += 1     #Starting Adjustments
+            self.advance()
             self.SMultiCmnt()   #Pass collected Comment
+            
 
     def SMultiCmnt(self):  #Main Creation of multi-line Comments  
         cmntText = ''      
@@ -179,6 +182,15 @@ class Lexer:
                 self.ongoingMulti = 1 
             else:       #Multi-Line closed
                 self.ongoingMulti = 0
+    
+    def make_Invalid(self):
+        strTxt = ""
+        try:
+            while self.current_char not in " \t":   #Collects Group of Uncrecognized
+                strTxt += self.current_char
+                self.advance()
+        except TypeError: pass    #Detects end of line
+        self.tokens.append([strTxt,'UNRECOGNIZED'])
 
     def make_Tokens(self):   #Creates Tokens
         self.tokens = []
@@ -247,10 +259,9 @@ class Lexer:
             elif self.current_char in LETTERS:  #Letters Detected
                 self.tokens.append(self.make_Word())
             elif self.current_char in OSYMBOLS: 
-                self.tokens.append([self.current_char,'UNRECOGNIZED'])
-                self.advance()
+                self.make_Invalid()
             else:
-                self.advance()
+                self.make_Invalid()
 
         if self.douBoolPass == 1 or self.divPass == 1 or self.dotPass == 1 or self.addPass==1 or self.subPass==1: 
             self.DoubleOpeChk()#Unresolved Operator
@@ -378,7 +389,7 @@ class Lexer:
                                 if self.current_char == 'g':
                                     self.advance()
                                     if self.current_char == None or self.current_char in " \t":   #edikung Keyword
-                                        return (["edikung", 'KEYWORD'])
+                                        return (["edikung", 'edikung'])
                                     else:
                                         return self.make_Identifier("edikung")
                                 else:
