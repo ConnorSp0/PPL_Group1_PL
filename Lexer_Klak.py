@@ -1,7 +1,15 @@
+import os
+
 DIGITS = "0123456789"      #Character Sets Comparisons
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 OSYMBOLS = "_*=+\.,/%&|>()[]{<}~!@#$^&\'\""
+OPE = "-*+,//%()^"
+ROPERATORS = ['<=', '>=', '<', '>', '!=', '==']
 IDLIST = DIGITS + LETTERS + "_"
+
+dirPath = os.path.dirname(os.path.realpath(__file__))
+outputPath = dirPath + '/Symbol_Table.txt'            
+fileStart = False
 
 class Lexer:
     def __init__(self, text, ongoingMulti_):  #Constructor
@@ -10,56 +18,66 @@ class Lexer:
         self.pos = -1
         self.current_char = None
         self.ongoingMulti = ongoingMulti_
+        self.outfile = ''
         self.advance()
+       
+        
 
     def advance(self):   #Reads Next Character
         self.lastpos = self.pos
         self.pos += 1
         self.current_char = self.text[self.pos] if self.pos < len(self.text) else None #Return "None" if last character
 
+    def writeSymbolTable(self, lexeme):   #Output File Creation
+        global fileStart
+        start = ["LEXEME", "TOKEN"]
+        if fileStart == False:
+            outfile = open(outputPath, "w") 
+            outfile.write(f'{start[0]: <40}{start[1]}\n')  
+            outfile.write('=======================================================================\n')  
+            fileStart = True
+        else: outfile = open(outputPath, "a") 
+        outfile.write(f'{lexeme[0]: <40}{lexeme[1]}\n')  
+        outfile.close()
+        return
+
+    
     def StringChk(self): #String Checking
         endQt = 0
-        stringTxt = ''
-        qtPos = self.pos
+        stringTxt = '\"'
         self.advance()
         while self.current_char != None:  #Collects characters 
             if self.current_char == "\"":    #End Quotation Detected
                 endQt = 1
-                self.tokens.append(['\"', '\"'])
-                if self.pos != qtPos+1: self.tokens.append([stringTxt, 'STRING'])  #Condition for not empty string
-                self.tokens.append(['\"', '\"'])
+                stringTxt += "\""
+                self.writeSymbolTable([stringTxt, 'STRING']) 
+                self.advance()
+                break
             else:
                 stringTxt += self.current_char
             self.advance()
         if endQt == 0:      #No end Quotation
-            stringTxt = "\"" + stringTxt
-            self.tokens.append([stringTxt, 'INVALID']) #No Closing double-quotations
+            self.writeSymbolTable([stringTxt, 'INVALID']) #No Closing double-quotations
 
     def CharChk(self): #Character Checking
         endQt = 0
-        stringTxt = ''
-        qtPos = self.pos
+        stringTxt = '\''
         self.advance()
         while self.current_char != None:
             if self.current_char == '\'':
                 endQt = 1
-                if len(stringTxt) == 1:           #1 Character
-                    self.tokens.append(['\'', "'"]) 
-                    self.tokens.append([stringTxt, 'CHARACTER'])
-                    self.tokens.append(['\'', '\''])
-                else:         
-                    if self.pos == qtPos+1:     #No Character
-                        self.tokens.append(['\'', "'"]) 
-                        self.tokens.append(['\'', "'"]) 
-                    else:                        #Multiple Character
-                        stringTxt = "\'" + stringTxt + "\'"     
-                        self.tokens.append([stringTxt, 'INVALID'])
+                stringTxt += '\''
+                if len(stringTxt) == 3 or len(stringTxt) == 2:           #1 Character
+                    self.writeSymbolTable([stringTxt, 'CHARACTER'])
+                    self.advance()
+                    return
+                else: 
+                    self.writeSymbolTable([stringTxt, 'INVALID'])
             else:
                 stringTxt += self.current_char
             self.advance()
         if endQt == 0: 
-            stringTxt = "\'" + stringTxt 
-            self.tokens.append([stringTxt, 'INVALID']) #No Closing single-quotation
+            self.writeSymbolTable([stringTxt, 'INVALID']) #No Closing single-quotation
 
     def SingleOpe(self): #Single-Digit Operation Checking
         singleCharPos = 0                                                      
@@ -72,19 +90,19 @@ class Lexer:
                 self.current_char = self.text[singleCharPos]
         self.pos = singleCharPos
         if self.current_char == "<":  #Single Operators token creation
-            self.tokens.append(['<', '<'])
+            self.writeSymbolTable(['<', '<'])
             self.advance()
         elif self.current_char == ">": 
-            self.tokens.append(['>', '>'])
+            self.writeSymbolTable(['>', '>'])
             self.advance()
         elif self.current_char == "=":
-            self.tokens.append(['=', '='])
+            self.writeSymbolTable(['=', '='])
             self.advance()
         elif self.current_char == "!":
-            self.tokens.append(['!', 'UNRECOGNIZED'])
+            self.writeSymbolTable(['!', 'UNRECOGNIZED'])
             self.advance()
         elif self.current_char == "/":
-            self.tokens.append(['/', '/'])
+            self.writeSymbolTable(['/', '/'])
             self.advance()
 
     def DoubleOpeChk(self):  #Double-Digit Operation Checking
@@ -98,25 +116,25 @@ class Lexer:
                 if self.current_char == ".":
                     lastChar = self.text[self.pos + 1]
                     if lastChar == ".":  #Multi-Line Comment detected
-                        self.tokens.append(['...', 'MCOMMENT_O'])
+                        self.writeSymbolTable(['...', 'MCOMMENT_O'])
                         self.FMultiCmnt()
                     else:               #Single-Line Comment detected
-                        self.tokens.append(['..', 'SCOMMENT'])
+                        self.writeSymbolTable(['..', 'SCOMMENT'])
                         self.SinglCmnt()
                 else:   #Single dot 
-                    self.tokens.append(['.', 'UNRECOGNIZED'])
+                    self.writeSymbolTable(['.', 'UNRECOGNIZED'])
 
             elif self.douBoolPass == 1:  #Boolean Operation Creation
                 self.douBoolPass = 0
                 if self.current_char == "=":  #"Or Equal" to Boolean Operators
                     if lastChar == "<":
-                        self.tokens.append(['<=', '<='])
+                        self.writeSymbolTable(['<=', '<='])
                     elif lastChar == ">":
-                        self.tokens.append(['>=', '>='])
+                        self.writeSymbolTable(['>=', '>='])
                     elif lastChar == "=":
-                        self.tokens.append(['==', '=='])
+                        self.writeSymbolTable(['==', '=='])
                     elif lastChar == "!":
-                        self.tokens.append(['!=', '!='])
+                        self.writeSymbolTable(['!=', '!='])
                     self.advance()
                 else:
                     self.SingleOpe()    #Single Boolean Operators
@@ -124,7 +142,7 @@ class Lexer:
             elif self.divPass == 1: #Division Operators
                 self.divPass = 0
                 if self.current_char == "/":
-                    self.tokens.append(['//', '//'])
+                    self.writeSymbolTable(['//', '//'])
                     self.advance()
                 else:
                     self.SingleOpe()
@@ -140,7 +158,7 @@ class Lexer:
             while self.pos < max:      #Collects Succeeding Characters
                 cmntTxt += self.current_char
                 self.advance()
-            self.tokens.append([cmntTxt, 'COMMENT'])  #Makes Comment token
+            self.writeSymbolTable([cmntTxt, 'COMMENT'])  #Makes Comment token
             self.advance()
 
     def FMultiCmnt(self): #Multi-Line Comment Checking
@@ -163,8 +181,8 @@ class Lexer:
         try:
             while self.pos < max:  #Collects all characters
                 if self.current_char == "." and self.text[self.pos + 1] == "." and self.text[self.pos + 2] == ".":  #Closed Multi-Line Comment 
-                    if self.pos != 0 and cmntText !='': self.tokens.append([cmntText, 'COMMENT'])
-                    self.tokens.append(['...', 'MCOMMENT_c'])            
+                    if self.pos != 0 and cmntText !='': self.writeSymbolTable([cmntText, 'COMMENT'])
+                    self.writeSymbolTable(['...', 'MCOMMENT_C'])            
                     self.pos += 2
                     end=1
                 else:  
@@ -174,11 +192,11 @@ class Lexer:
             while self.pos < max:  
                 cmntText += self.current_char
                 self.advance()
-            self.tokens.append([cmntText, 'COMMENT'])
+            self.writeSymbolTable([cmntText, 'COMMENT'])
             self.ongoingMulti = 1   #Multi-Line C not closed
         else:
             if end != 1: #Multi-Line C not closed
-                self.tokens.append([cmntText, 'COMMENT'])
+                self.writeSymbolTable([cmntText, 'COMMENT'])
                 self.ongoingMulti = 1 
             else:       #Multi-Line closed
                 self.ongoingMulti = 0
@@ -190,7 +208,7 @@ class Lexer:
                 strTxt += self.current_char
                 self.advance()
         except TypeError: pass    #Detects end of line
-        self.tokens.append([strTxt,'UNRECOGNIZED'])
+        self.writeSymbolTable([strTxt,'UNRECOGNIZED'])
 
     def make_Tokens(self):   #Creates Tokens
         self.tokens = []
@@ -199,6 +217,7 @@ class Lexer:
         self.dotPass = 0
         self.addPass = 0
         self.subPass = 0
+
         while self.current_char != None: #Loops until end of text
             if self.ongoingMulti == 1:  #Multi-Line C not closed
                 self.SMultiCmnt()
@@ -206,22 +225,22 @@ class Lexer:
             elif self.current_char in ' \t': #Spaces detected
                 self.advance()
             elif self.douBoolPass == 1 or self.divPass == 1 or self.dotPass == 1:  #Probable Double Operator detected
-                if self.dotPass ==1 and self.current_char in DIGITS: self.tokens.append(self.make_Number())
+                if self.dotPass ==1 and self.current_char in DIGITS: self.writeSymbolTable(self.make_Number())
                 else: self.DoubleOpeChk()
             elif self.current_char == '+':
-                self.tokens.append(['+', '+'])
+                self.writeSymbolTable(['+', '+'])
                 self.advance()
-            elif self.current_char == '-':                           #Single Character Detection
-                self.tokens.append(['-', '-'])
+            elif self.current_char == '-':  
+                self.writeSymbolTable(['-', '-'])    #Single Character Detection
                 self.advance()
             elif self.current_char == '*':
-                self.tokens.append(['*', '*'])
+                self.writeSymbolTable(['*', '*'])
                 self.advance()
-            elif self.current_char == '/':    #Division Operator Detected
+            elif self.current_char == '/':      #Division Operator Detected
                 self.divPass = 1
                 self.advance()
             elif self.current_char == '%':
-                self.tokens.append(['%', '%'])
+                self.writeSymbolTable(['%', '%'])
                 self.advance()
             elif self.current_char in '<>=!': #Boolean Operator Detected
                 self.douBoolPass = 1
@@ -230,34 +249,34 @@ class Lexer:
                 self.dotPass = 1
                 self.advance()
             elif self.current_char == '^':
-                self.tokens.append(['^', '^'])
+                self.writeSymbolTable(['^', '^'])
                 self.advance()
             elif self.current_char == '(':
-                self.tokens.append(['(', '('])
+                self.writeSymbolTable(['(', '('])
                 self.advance()
             elif self.current_char == ')':
-                self.tokens.append([')', ')'])
+                self.writeSymbolTable([')', ')'])
                 self.advance()
             elif self.current_char == '[':
-                self.tokens.append(['[', '['])
+                self.writeSymbolTable(['[', '['])
                 self.advance()
             elif self.current_char == ']':
-                self.tokens.append([']', ']'])
+                self.writeSymbolTable([']', ']'])
                 self.advance()
             elif self.current_char == ',':
-                self.tokens.append([',', ','])
+                self.writeSymbolTable([',', ','])
                 self.advance()
             elif self.current_char == ';':
-                self.tokens.append([';', ';'])
+                self.writeSymbolTable([';', ';'])
                 self.advance()
             elif self.current_char == "\"":     #String Detected
                 self.StringChk()
             elif self.current_char == "\'":     #Character Detected
                 self.CharChk()
             elif self.current_char in DIGITS:   #Digits Detected 
-                self.tokens.append(self.make_Number())
+                self.writeSymbolTable(self.make_Number())
             elif self.current_char in LETTERS:  #Letters Detected
-                self.tokens.append(self.make_Word())
+                self.writeSymbolTable(self.make_Word())
             elif self.current_char in OSYMBOLS: 
                 self.make_Invalid()
             else:
@@ -266,38 +285,40 @@ class Lexer:
         if self.douBoolPass == 1 or self.divPass == 1 or self.dotPass == 1 or self.addPass==1 or self.subPass==1: 
             self.DoubleOpeChk()#Unresolved Operator
         
-        for i in self.tokens:   #Output Tokens
-            print(f'{i[0]: <20}{i[1]}')
-
-        return self.tokens, self.ongoingMulti   #Give Tokens to Object
+        return self.ongoingMulti   #Give Tokens to Object
 
     def make_Number(self):   #Integer or Float Creation
-        num_str = ''
+        num_str = ""
         dot_count = 0
+        is_Invalid = False
         if self.dotPass ==1:
             self.pos -= 2
             self.advance()
             self.dotPass = 0
-        while self.current_char != None and self.current_char in DIGITS + '.':  #Collection of Numerical Characters
+        while self.current_char != None and self.current_char not in ' \n\t':  #Collection of Numerical Characters
+            if not(self.current_char in DIGITS or self.current_char == '.'):    #Check if not Digits or '.'
+                if self.current_char in OPE  + ";[": break
+                is_Invalid = True
             if self.current_char == '.':   #Float Detected
                 dot_count += 1
-                try:
+                try: 
                     if self.text[self.pos+1] == ".": break
                 except IndexError: pass
+            
             num_str += self.current_char
             self.advance()
-
-        if dot_count == 0:   #Output
-            return ([int(num_str), 'INTEGER'])
-        elif dot_count == 1:
-            return ([float(num_str), 'FLOAT'])
+        if dot_count == 0 and is_Invalid == False:   #Output
+            return [int(num_str), 'INTEGER']
+        elif dot_count == 1 and is_Invalid == False:
+            return [float(num_str), 'FLOAT']
         else: 
             return ([num_str, 'INVALID'])
 
     def make_Identifier(self, key_str):  #Makes Identifiers
         invalid = 0
-        while self.current_char != None and self.current_char not in " \t" :  #Terminates if space detected
+        while self.current_char != None and self.current_char not in " \t;" :  #Terminates if space detected
             if self.current_char in OSYMBOLS and self.current_char != "_": #Checks invalid Characters
+                if self.current_char in "()[],=" or self.current_char in ROPERATORS or self.current_char in OPE: break
                 invalid = 1 
                 if self.current_char in "\'\"":   #Character or String start indication
                     invalid=0
@@ -378,7 +399,7 @@ class Lexer:
                 self.advance()
                 if self.current_char == 'i':
                     self.advance()
-                    if self.current_char == None or self.current_char in " \t":  #edi Keyword
+                    if self.current_char == None or self.current_char in " \t[" :  #edi Keyword
                         return (["edi", 'edi'])
                     elif self.current_char == 'k':
                         self.advance()
@@ -419,11 +440,11 @@ class Lexer:
                                 self.advance()
                                 if self.current_char == 'g':
                                     self.advance()
-                                    if self.current_char == None or self.current_char in " \t":   #ilimbag Keyword
+                                    if self.current_char == None or self.current_char in " \t(":   #ilimbag Keyword
                                         return (["ilimbag", 'ilimbag'])
                                     elif self.current_char == 's':
                                         self.advance()
-                                        if self.current_char == None or self.current_char in " \t":   #ilimbags Keyword
+                                        if self.current_char == None or self.current_char in " \t(":   #ilimbags Keyword
                                             return (["ilimbags", 'ilimbags'])
                                         else: return self.make_Identifier("ilimbags")
                                     else: return self.make_Identifier("ilimbag")
@@ -446,6 +467,17 @@ class Lexer:
                         else: return self.make_Identifier("ilab")
                     else: return self.make_Identifier("ila")          
                 else: return self.make_Identifier("il")
+            elif self.current_char == 'k':
+                self.advance()
+                if self.current_char == 'o':
+                    self.advance()
+                    if self.current_char == 't':
+                        self.advance()
+                        if self.current_char == None or self.current_char in " \t(":   #ilimbag Keyword
+                            return (["ikot", 'ikot'])
+                        else: return self.make_Identifier("ikot")
+                    else: return self.make_Identifier("iko")       
+                else: return self.make_Identifier("ik")
             else: return self.make_Identifier("i")
 
         elif self.current_char == 'l':
@@ -460,7 +492,7 @@ class Lexer:
                             self.advance()
                             if self.current_char == 'n':
                                 self.advance()
-                                if self.current_char == None or self.current_char in " \t":  #lagyan Keyword
+                                if self.current_char == None or self.current_char in " \t();":  #lagyan Keyword
                                     return (["lagyan", 'lagyan'])
                                 else: return self.make_Identifier("lagyan")
                             else: return self.make_Identifier("lagya")
@@ -699,7 +731,7 @@ class Lexer:
                     self.advance()
                     if self.current_char == 'g': 
                         self.advance()
-                        if self.current_char == None or self.current_char in " \t":   #kung Reserved Word
+                        if self.current_char == None or self.current_char in " \t" :   #kung Reserved Word
                             return (["kung", 'kung'])
                         else: return self.make_Identifier("kung")  
                     else: return self.make_Identifier("kun")          
@@ -742,7 +774,7 @@ class Lexer:
                         self.advance()
                         if self.current_char == 'o':
                             self.advance()
-                            if self.current_char == None or self.current_char in " \t":    #totoo Reserved Word
+                            if self.current_char == None or self.current_char in " \t;)":    #totoo Reserved Word
                                 return (["totoo", 'totoo'])
                             else: return self.make_Identifier("totoo")
                         else: return self.make_Identifier("toto")
@@ -772,7 +804,7 @@ class Lexer:
                     self.advance()
                     if self.current_char == 'i':
                         self.advance()
-                        if self.current_char == None or self.current_char in " \t":    #mali Reserved Word
+                        if self.current_char == None or self.current_char in " \t);":    #mali Reserved Word
                             return (["mali", 'mali'])
                         else: return self.make_Identifier("mali")
                     else: return self.make_Identifier("mal")
@@ -869,6 +901,6 @@ class Lexer:
         
 def run(text, multiLine):         #Starts Program
     lexer = Lexer(text, multiLine)
-    result = lexer.make_Tokens()
+    list = lexer.make_Tokens()
 
-    return result      #Give Tokens to Object
+    return list     #Give Tokens to Object

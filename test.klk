@@ -1,104 +1,151 @@
-IDENTIFIERS
-Identifier_Sample
+..DECLARATION STATEMENTS
+
+numero age;
+numero Even = 2;
+
+pal Pulis (numero b)[
+    ilimbag(b+2);
+]
+
+klase PUP[
+    salita b = "kamusta";
+    ilimbag(b);
+]
+
+..ASSIGNMENT STATEMENTS
+money = 500.5;
+a = b;
+a = 5 + 15;
+
+..CONDITIONAL STATEMENTS
+
+..If statement
+kung age >= 18 [
+    aprubado = 1;
+]
+
+..If and Elif STATEMENTS
+kung age >= 18 [
+    aprubado = 1;
+]
+edikung age <= 17 [
+    aprubado = 0;
+]
+
+..If and Else statements
+kung age >= 18 [
+    aprubado = 1;
+]
+edi [
+    aprubado = 2;
+]
+
+..If, Elif, and Else statements
+kung age >= 18 [
+    aprubado = 1;
+]
+edikung age <= 17 [
+    aprubado = 0;
+]
+edi [
+    aprubado = 2;
+]
 
 
-ARITHMETIC_OPERATORS
-+
--
-*
-/
-//
-^
-%
+..ITERATIVE statements
+ikot ( i=0 , i<3 )[
+    ilimbag(i);
+    i = i + 1;
+]
+
+numero i=0;
+habang i <= 2 [
+    i = i + 1;
+    ilimbag("Hello");
+]
+
+..INPUT and OUTPUTw STATEMENTS
+a = lagyan();
+a = lagyan(b);
+a = lagyan("hello");
+a = lagyan(3-2);
+ilimbag(a);
+ilimbag("Hello", a);
+ilimbag(a+2);
 
 
-RELATIONAL_OPERATORS
-<
->
-<=
->=
-==
-!=
+..ERRORS
+
+..Declaration Statements
+numero age
+numero Even = ;
+pal Pulis ()[
+    ilimbag(b+2);
+]
+klase PUP
+    salita b = "kamusta";
+    ilimbag(b);
+]
+
+..Assignment  Statements
+money 
+a = b
+a = 5 + "a";
+
+..Conditional Statements
+
+..If statement
+kung  >= 18 [
+    aprubado = 1;
+]
+
+..If and Elif STATEMENTS
+kung age >= 18 [
+    aprubado = 1;
+    edikung age <= 17 [
+    aprubado = 0;
+    ]
+]
+ 
+
+..If and Else statements
+kung age >= 18 [
+    aprubado = 1;
+
+edi [
+    aprubado = 2;
+]
+
+..If and Else statements
+kung age >= 18 [
+    aprubado = 1;
+]
+edikung age <=  [
+    aprubado = 0;
+]
+edi [
+    aprubado = 2;
+]
 
 
-LOGICAL_OPERATORS
-at
-oh
-hindi
+..ITERATIVE statements
+ikot ( i=0 ,  )[
+    ilimbag(i);
+    i = i + 1;
+]
 
+habang i 2 [
+    i = i + 1;
+    ilimbag("Hello");
+]
 
-CONSTANTS
-1
-1.14
-'C'
-"hello"
-totoo
-mali
+..INPUT and OUTPUT STATEMENTS
+a = lagyan);
+a = lagyan(b;
+a = lagyan("hello")
+a = lagyan(3-2+);
+ilimbag();
+ilimbag("Hello",);
+ilimbag(a+2
 
-
-KEYWORDS
-edi
-edikung
-ilimbag
-ilimbags
-lagyan
-habang
-
-
-RESERVED_WORDS
-numero
-lutang
-salita
-karakter
-bul
-sira
-tuloy
-kabtol
-pindutan
-ilabas
-labasmuna
-wala
-kung
-subok
-puwera
-pal
-klase
-
-
-NOISE_WORDS
-ay 
-simula
-wakas
-kaunaunahan
-kaduluduluhan
-puna
-
-
-COMMENTS
-..Single-Line Comment
-...
-Multi-Line Comment
-...
-
-
-DELIMETERS_AND_BRACKETS
-,
-()
-[]
-
-
-
-INVALIDS
-A!
-25.25.25
-'character'
-"no ending quote
-'
-"
-
-
-UNRECOGNIZED
-.
-!
-@Unrecognized2341
 

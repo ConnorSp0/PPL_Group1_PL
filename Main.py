@@ -1,28 +1,11 @@
-import Lexer_Klak
+import Lexer_Klak, os, Syntax
 from tkinter import filedialog
 
-
-
-def symbolTable(result):   #Output File Creation
-    outputPath = r"C:\Users\JM\Documents\GitHub\PPL_Group1_PL\Symbol_Table.txt"  #Output File
-    try:
-        outfile = open(outputPath, "r")   #Checks if Output File exist
-        outfile.close()
-    except FileNotFoundError: outfile = open(outputPath, "w")  #File Doesn't Exist
-    else: outfile = open(outputPath, "a")  #File Exists
-    outfile.write("SYMBOL TABLE\n")   
-    outfile.write("-----------------------------------------------------------------\n")   #Design Part
-    startingSt = ['LEXEME', 'TOKEN']
-    outfile.write(f'{startingSt[0]: <20}{startingSt[1]}\n')  
-    for lines in result:     #Token Writing         
-        for lexeme in lines:
-            outfile.write(f"{lexeme[0]: <20}{lexeme[1]}\n")
-    outfile.write("-----------------------------------------------------------------\n\n")  
-    outfile.close()
-    return
+dirPath = os.path.dirname(os.path.realpath(__file__))
+outputPath = dirPath + '/Symbol_Table.txt'  #Output File
 
 def Start(): #Starts Program
-    inputPath = filedialog.askopenfilename(initialdir=r"C:\Users\JM\Documents\GitHub\PPL_Group1_PL", title="Choose Klak File",   #Klak File Choosing
+    inputPath = filedialog.askopenfilename(initialdir=dirPath, title="Choose Klak File",   #Klak File Choosing
                                      filetypes=(("Klak File","*.klk"),))
     try:
         file = open(inputPath, 'r')
@@ -31,25 +14,22 @@ def Start(): #Starts Program
         print("Klak File does not exist")
         exit(0)
     else:
-        print("=================================================================")      #Design
-        print("                    WELCOME TO KLAK LEXER                       \n") 
+        print("=================================")
         ongoingMulti = 0
-        result = []      #Declaration 
-        print("SYMBOL TABLE")   
-        print("-----------------------------------------------------------------")
-        startingSt = ['LEXEME', 'TOKEN']                #Introductory Columns
-        print(f'{startingSt[0]: <20}{startingSt[1]}')
-        line = file.readline()  
+        line = file.readline() 
         while line  != "":                  #Reads File per Line
             line = line.replace("\n","")
-            tempList = Lexer_Klak.run(line, ongoingMulti)
-            result.append(tempList[0])
-            ongoingMulti = tempList[1]
+            tempList = Lexer_Klak.run(line, ongoingMulti)    
+            ongoingMulti = tempList
             line = file.readline()
         file.close()
-        symbolTable(result)     #Pass result to Output File Creation
-        print("\n_Process Complete_")
-        print("=================================================================")  #Ending Design
-
+        outfile = open(outputPath, "a")  #Write ending design
+        outfile.close()
+        print("\n_Klak Lexer Process Complete_")
+        print("=================================")  #Ending Design
+        # Runs Syntax Analyzer
+        Syntax.start()
+        print("\n_Klak Syntax Analyzer Process Complete_")
+        print("=================================")  #Ending Design
 
 Start()  #Starts Program
