@@ -27,4 +27,4 @@ Recognizing the scarcity of Filipino-based programming languages and the potenti
 
 **Project Details**
 
-* A detailed description of the project, including design decisions, can be found in the accompanying (PDF Document)[https://github.com/ConnorSp0/PPL_Group1_PL/Project_Paper.pdf].
+* A detailed description of the project, including design decisions, can be found in the accompanying (PDF Document)[https://github.com/ConnorSp0/PPL_Group1_PL/blob/bddbdc94f0cf6a3f7062e8ad6e77dfbfaad5a3fe/Project_Paper.pdf].
